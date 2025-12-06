@@ -1,0 +1,7 @@
+open chrome  
+go https://google.com/  
+type "compiler project"  
+enter  
+wait 2  
+screenshot test.png  
+
