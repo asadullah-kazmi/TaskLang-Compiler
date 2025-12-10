@@ -1,0 +1,67 @@
+# Complex Recipe Research: Start from Google, find recipes, ingredients, cooking tips
+# Multi-step cooking automation workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for a recipe
+type "chocolate chip cookie recipe" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Screenshot recipe search results
+screenshot recipe_search.png
+
+# Step 3: Click on a recipe site
+click css "a[href*='allrecipes.com'], a[href*='foodnetwork.com'], a[href*='tasty.co']"
+wait 4
+
+# Step 4: Screenshot recipe page
+screenshot recipe_page.png
+
+# Step 5: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 6: Search for ingredients
+type "chocolate chip cookie ingredients where to buy" in name "q"
+enter in name "q"
+wait 3
+
+# Step 7: Screenshot ingredient info
+screenshot ingredients_info.png
+
+# Step 8: Return to Google
+go https://www.google.com/
+wait 2
+
+# Step 9: Search for cooking tips
+type "baking tips for beginners" in name "q"
+enter in name "q"
+wait 3
+
+# Step 10: Click on cooking tips site
+click css "a[href*='cooking-tips'], a[href*='baking-guide']"
+wait 4
+
+# Step 11: Screenshot cooking tips
+screenshot cooking_tips.png
+
+# Step 12: Back to Google for video tutorials
+go https://www.google.com/
+wait 2
+
+# Step 13: Search for video tutorial
+type "chocolate chip cookie recipe video tutorial" in name "q"
+enter in name "q"
+wait 3
+
+# Step 14: Click on YouTube result
+click css "a[href*='youtube.com']"
+wait 4
+
+# Step 15: Final screenshot
+screenshot video_tutorial.png
+close
+

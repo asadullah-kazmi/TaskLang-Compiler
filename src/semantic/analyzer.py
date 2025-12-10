@@ -2,7 +2,7 @@
 
 from ..parser.ast import (
     ProgramNode, OpenNode, GoNode, TypeNode, EnterNode,
-    WaitNode, ScreenshotNode, CloseNode
+    WaitNode, ScreenshotNode, CloseNode, ClickNode
 )
 
 
@@ -76,6 +76,8 @@ class SemanticAnalyzer:
             self._analyze_go(statement, line_number)
         elif isinstance(statement, TypeNode):
             self._analyze_type(statement, line_number)
+        elif isinstance(statement, ClickNode):
+            self._analyze_click(statement, line_number)
         elif isinstance(statement, EnterNode):
             self._analyze_enter(statement, line_number)
         elif isinstance(statement, WaitNode):
@@ -106,6 +108,15 @@ class SemanticAnalyzer:
         if not self.page_loaded:
             raise SemanticError(
                 f"Cannot type text '{node.text}' before loading a page. "
+                "You must use 'go' command to navigate to a URL first.",
+                line_number
+            )
+    
+    def _analyze_click(self, node: ClickNode, line_number: int):
+        """Analyze a ClickNode statement."""
+        if not self.page_loaded:
+            raise SemanticError(
+                "Cannot click element before loading a page. "
                 "You must use 'go' command to navigate to a URL first.",
                 line_number
             )

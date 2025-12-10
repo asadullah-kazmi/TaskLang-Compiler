@@ -1,0 +1,67 @@
+# Complex Job Search: Start from Google, search jobs, check requirements
+# Multi-step job hunting automation workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for Python developer jobs
+type "Python developer jobs remote" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Screenshot job search results
+screenshot job_search_results.png
+
+# Step 3: Click on a job board (LinkedIn, Indeed, etc.)
+click css "a[href*='linkedin.com'], a[href*='indeed.com'], a[href*='glassdoor.com']"
+wait 4
+
+# Step 4: Screenshot job board
+screenshot job_board.png
+
+# Step 5: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 6: Search for required skills
+type "Python developer skills requirements" in name "q"
+enter in name "q"
+wait 3
+
+# Step 7: Click on a skills guide
+click css "a[href*='skill-requirements'], a[href*='career-guide']"
+wait 4
+
+# Step 8: Screenshot skills requirements
+screenshot skills_requirements.png
+
+# Step 9: Return to Google
+go https://www.google.com/
+wait 2
+
+# Step 10: Search for interview preparation
+type "Python developer interview questions" in name "q"
+enter in name "q"
+wait 3
+
+# Step 11: Click on interview prep site
+click css "a[href*='interview'], a[href*='preparation']"
+wait 4
+
+# Step 12: Screenshot interview prep
+screenshot interview_prep.png
+
+# Step 13: Back to Google for salary info
+go https://www.google.com/
+wait 2
+
+# Step 14: Search for salary information
+type "Python developer salary 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 15: Final screenshot
+screenshot salary_info.png
+close
+

@@ -77,25 +77,65 @@ class GoNode(ASTNode):
 class TypeNode(ASTNode):
     """Node representing a 'type' statement."""
     
-    def __init__(self, text: str):
+    def __init__(self, text: str, selector: str = None, selector_type: str = None):
         """
         Initialize a TypeNode.
         
         Args:
             text: Text to type
+            selector: Element selector (id, name, xpath, css, etc.)
+            selector_type: Type of selector ('id', 'name', 'xpath', 'css', 'tag')
         """
         self.text = text
+        self.selector = selector
+        self.selector_type = selector_type
     
     def __repr__(self) -> str:
         """Return string representation of the node."""
+        if self.selector:
+            return f"TypeNode(text={self.text!r}, selector={self.selector!r}, selector_type={self.selector_type!r})"
         return f"TypeNode(text={self.text!r})"
+
+
+class ClickNode(ASTNode):
+    """Node representing a 'click' statement."""
+    
+    def __init__(self, selector: str = None, selector_type: str = None):
+        """
+        Initialize a ClickNode.
+        
+        Args:
+            selector: Element selector (id, name, xpath, css, etc.)
+            selector_type: Type of selector ('id', 'name', 'xpath', 'css', 'tag')
+        """
+        self.selector = selector
+        self.selector_type = selector_type
+    
+    def __repr__(self) -> str:
+        """Return string representation of the node."""
+        if self.selector:
+            return f"ClickNode(selector={self.selector!r}, selector_type={self.selector_type!r})"
+        return "ClickNode()"
 
 
 class EnterNode(ASTNode):
     """Node representing an 'enter' statement."""
     
+    def __init__(self, selector: str = None, selector_type: str = None):
+        """
+        Initialize an EnterNode.
+        
+        Args:
+            selector: Element selector (id, name, xpath, css, etc.)
+            selector_type: Type of selector ('id', 'name', 'xpath', 'css', 'tag')
+        """
+        self.selector = selector
+        self.selector_type = selector_type
+    
     def __repr__(self) -> str:
         """Return string representation of the node."""
+        if self.selector:
+            return f"EnterNode(selector={self.selector!r}, selector_type={self.selector_type!r})"
         return "EnterNode()"
 
 

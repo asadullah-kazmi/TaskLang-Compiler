@@ -1,0 +1,6 @@
+open firefox
+go https://example.com/
+wait 2
+screenshot example_page.png
+close
+

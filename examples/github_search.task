@@ -1,0 +1,10 @@
+open chrome
+go https://github.com/
+wait 2
+click css "input[placeholder*='Search']"
+type "selenium webdriver" in css "input[placeholder*='Search']"
+enter in css "input[placeholder*='Search']"
+wait 3
+screenshot github_results.png
+close
+

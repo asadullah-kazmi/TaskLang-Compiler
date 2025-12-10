@@ -1,0 +1,9 @@
+open chrome
+go https://www.youtube.com/
+wait 3
+type "python tutorial" in name "search_query"
+enter in name "search_query"
+wait 3
+screenshot youtube_results.png
+close
+

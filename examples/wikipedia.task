@@ -1,0 +1,9 @@
+open chrome
+go https://www.wikipedia.org/
+wait 2
+type "compiler" in id "searchInput"
+click id "search-form"
+wait 10
+screenshot wikipedia_page.png
+close
+

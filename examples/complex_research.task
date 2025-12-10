@@ -1,0 +1,48 @@
+# Complex Research Task: Search Google, navigate to Wikipedia, extract information
+# This demonstrates a multi-step workflow starting from Google
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for Python programming on Google
+type "Python programming language" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Click on Wikipedia result (usually first or second result)
+click css "a[href*='wikipedia.org']"
+wait 3
+
+# Step 3: Take screenshot of Wikipedia page
+screenshot python_wikipedia.png
+
+# Step 4: Navigate back to Google
+go https://www.google.com/
+wait 2
+
+# Step 5: Search for another topic
+type "web automation selenium" in name "q"
+enter in name "q"
+wait 3
+
+# Step 6: Click on a result (could be documentation site)
+click css "a[href*='selenium.dev']"
+wait 3
+
+# Step 7: Take screenshot
+screenshot selenium_docs.png
+
+# Step 8: Go back to Google again
+go https://www.google.com/
+wait 2
+
+# Step 9: Final search
+type "TaskLang compiler" in name "q"
+enter in name "q"
+wait 3
+
+# Step 10: Final screenshot
+screenshot final_search.png
+close
+
