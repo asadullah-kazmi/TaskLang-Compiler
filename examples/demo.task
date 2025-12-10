@@ -1,7 +1,8 @@
-open chrome  
-go https://google.com/  
-type "compiler project"  
-enter  
-wait 2  
-screenshot test.png  
+open chrome
+go https://google.com/
+type "compiler project" in name "q"
+enter in name "q"
+wait 2
+screenshot test.png
+close
 

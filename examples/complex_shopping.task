@@ -1,0 +1,51 @@
+# Complex Shopping Research: Start from Google, search for products, compare prices
+# Multi-step shopping automation workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for a product on Google
+type "best laptop 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Take screenshot of search results
+screenshot laptop_search_results.png
+
+# Step 3: Click on a shopping result or review site
+click css "a[href*='amazon.com']"
+wait 4
+
+# Step 4: Take screenshot of product page
+screenshot amazon_laptops.png
+
+# Step 5: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 6: Search for price comparison
+type "laptop price comparison" in name "q"
+enter in name "q"
+wait 3
+
+# Step 7: Click on a comparison site
+click css "a[href*='pricegrabber.com'], a[href*='compare.com']"
+wait 4
+
+# Step 8: Screenshot comparison
+screenshot price_comparison.png
+
+# Step 9: Return to Google for reviews
+go https://www.google.com/
+wait 2
+
+# Step 10: Search for reviews
+type "laptop reviews 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 11: Final screenshot
+screenshot reviews.png
+close
+

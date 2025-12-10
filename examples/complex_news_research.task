@@ -1,0 +1,58 @@
+# Complex News Research: Start from Google, gather news from multiple sources
+# Multi-source news gathering workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for tech news
+type "latest technology news 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Screenshot Google news results
+screenshot google_news_results.png
+
+# Step 3: Click on a news article
+click css "a[href*='techcrunch.com'], a[href*='theverge.com'], a[href*='wired.com']"
+wait 4
+
+# Step 4: Screenshot first article
+screenshot tech_news_article1.png
+
+# Step 5: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 6: Search for AI news specifically
+type "artificial intelligence news today" in name "q"
+enter in name "q"
+wait 3
+
+# Step 7: Click on AI news article
+click css "a[href*='ai-news'], a[href*='artificial-intelligence']"
+wait 4
+
+# Step 8: Screenshot AI article
+screenshot ai_news.png
+
+# Step 9: Return to Google
+go https://www.google.com/
+wait 2
+
+# Step 10: Search for programming news
+type "programming language trends 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 11: Screenshot trends
+screenshot programming_trends.png
+
+# Step 12: Click on a trend article
+click css "a[href*='github.com'], a[href*='stackoverflow.com']"
+wait 4
+
+# Step 13: Final screenshot
+screenshot trends_article.png
+close
+

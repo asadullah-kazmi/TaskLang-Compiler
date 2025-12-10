@@ -1,0 +1,8 @@
+open chrome
+go https://google.com/
+type "python automation" in name "q"
+enter in name "q"
+wait 3
+screenshot google_results.png
+close
+

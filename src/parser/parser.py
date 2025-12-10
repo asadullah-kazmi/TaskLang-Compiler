@@ -3,7 +3,7 @@
 from typing import List, Optional
 from .ast import (
     ProgramNode, OpenNode, GoNode, TypeNode, EnterNode,
-    WaitNode, ScreenshotNode, CloseNode
+    WaitNode, ScreenshotNode, CloseNode, ClickNode
 )
 
 
@@ -78,6 +78,8 @@ class Parser:
             return self._parse_go_stmt()
         elif token.type == 'TYPE':
             return self._parse_type_stmt()
+        elif token.type == 'CLICK':
+            return self._parse_click_stmt()
         elif token.type == 'ENTER':
             return self._parse_enter_stmt()
         elif token.type == 'WAIT':
@@ -106,15 +108,32 @@ class Parser:
         return GoNode(url_token.value)
     
     def _parse_type_stmt(self) -> TypeNode:
-        """Parse a 'type' statement: TYPE STRING"""
+        """Parse a 'type' statement: TYPE STRING [in SELECTOR_TYPE="value"]"""
         type_token = self._consume('TYPE', "Expected 'type' keyword")
         string_token = self._consume('STRING', "Expected string literal after 'type'")
-        return TypeNode(string_token.value)
+        
+        # Check for optional selector: "in id="value"" or "in name="value"", etc.
+        selector, selector_type = self._parse_optional_selector()
+        
+        return TypeNode(string_token.value, selector, selector_type)
+    
+    def _parse_click_stmt(self) -> ClickNode:
+        """Parse a 'click' statement: CLICK [SELECTOR_TYPE="value"]"""
+        click_token = self._consume('CLICK', "Expected 'click' keyword")
+        
+        # Check for optional selector
+        selector, selector_type = self._parse_optional_selector()
+        
+        return ClickNode(selector, selector_type)
     
     def _parse_enter_stmt(self) -> EnterNode:
-        """Parse an 'enter' statement: ENTER"""
-        self._consume('ENTER', "Expected 'enter' keyword")
-        return EnterNode()
+        """Parse an 'enter' statement: ENTER [in SELECTOR_TYPE="value"]"""
+        enter_token = self._consume('ENTER', "Expected 'enter' keyword")
+        
+        # Check for optional selector
+        selector, selector_type = self._parse_optional_selector()
+        
+        return EnterNode(selector, selector_type)
     
     def _parse_wait_stmt(self) -> WaitNode:
         """Parse a 'wait' statement: WAIT NUMBER"""
@@ -156,6 +175,58 @@ class Parser:
     def _is_at_end(self) -> bool:
         """Check if we've consumed all tokens."""
         return self.pos >= len(self.tokens)
+    
+    def _parse_optional_selector(self):
+        """
+        Parse an optional selector: [in SELECTOR_TYPE "value"] or [SELECTOR_TYPE "value"]
+        Supports: id "value", name "value", xpath "value", css "value", tag "value"
+        
+        Returns:
+            Tuple of (selector_value, selector_type) or (None, None) if no selector
+        """
+        if self._is_at_end():
+            return None, None
+        
+        token = self._peek()
+        
+        # Check for optional "in" keyword
+        has_in = False
+        if token.type == 'IDENTIFIER' and token.value.lower() == 'in':
+            has_in = True
+            self._advance()
+            if self._is_at_end():
+                return None, None
+            token = self._peek()
+        
+        # Check if it's a selector type (id, name, xpath, css, tag)
+        if token.type != 'IDENTIFIER':
+            return None, None
+        
+        selector_type = token.value.lower()
+        if selector_type not in ['id', 'name', 'xpath', 'css', 'tag']:
+            return None, None
+        
+        # Consume selector type
+        self._advance()
+        
+        # Get selector value (string or identifier)
+        if self._is_at_end():
+            raise ParserError(
+                f"Expected selector value after {selector_type}",
+                token.line,
+                token.column
+            )
+        
+        value_token = self._peek()
+        if value_token.type == 'STRING':
+            self._advance()
+            return value_token.value, selector_type
+        elif value_token.type == 'IDENTIFIER':
+            self._advance()
+            return value_token.value, selector_type
+        else:
+            # No selector found
+            return None, None
     
     def _consume(self, expected_type: str, error_message: str):
         """

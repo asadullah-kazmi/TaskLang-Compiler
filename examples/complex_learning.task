@@ -1,0 +1,64 @@
+# Complex Learning Journey: Start from Google, navigate through tutorials
+# Multi-step learning automation workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for Python tutorial
+type "Python tutorial for beginners" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Click on a tutorial site (like w3schools, tutorialspoint, etc.)
+click css "a[href*='w3schools.com']"
+wait 4
+
+# Step 3: Screenshot tutorial page
+screenshot python_tutorial.png
+
+# Step 4: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 5: Search for practice platforms
+type "Python coding practice online" in name "q"
+enter in name "q"
+wait 3
+
+# Step 6: Click on a practice site
+click css "a[href*='hackerrank.com'], a[href*='leetcode.com'], a[href*='codewars.com']"
+wait 4
+
+# Step 7: Screenshot practice platform
+screenshot practice_platform.png
+
+# Step 8: Return to Google
+go https://www.google.com/
+wait 2
+
+# Step 9: Search for documentation
+type "Python official documentation" in name "q"
+enter in name "q"
+wait 3
+
+# Step 10: Click on Python.org docs
+click css "a[href*='python.org']"
+wait 4
+
+# Step 11: Screenshot documentation
+screenshot python_docs.png
+
+# Step 12: Back to Google for community
+go https://www.google.com/
+wait 2
+
+# Step 13: Search for community forums
+type "Python community forum stackoverflow" in name "q"
+enter in name "q"
+wait 3
+
+# Step 14: Final screenshot
+screenshot community_forum.png
+close
+

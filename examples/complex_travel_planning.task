@@ -1,0 +1,67 @@
+# Complex Travel Planning: Start from Google, research destinations, hotels, flights
+# Multi-step travel planning automation workflow
+
+open chrome
+go https://www.google.com/
+wait 2
+
+# Step 1: Search for travel destination
+type "best travel destinations 2024" in name "q"
+enter in name "q"
+wait 3
+
+# Step 2: Screenshot destination ideas
+screenshot travel_destinations.png
+
+# Step 3: Click on a travel guide site
+click css "a[href*='tripadvisor.com'], a[href*='lonelyplanet.com'], a[href*='travel.com']"
+wait 4
+
+# Step 4: Screenshot travel guide
+screenshot travel_guide.png
+
+# Step 5: Go back to Google
+go https://www.google.com/
+wait 2
+
+# Step 6: Search for hotels
+type "best hotels booking" in name "q"
+enter in name "q"
+wait 3
+
+# Step 7: Click on booking site
+click css "a[href*='booking.com'], a[href*='hotels.com'], a[href*='expedia.com']"
+wait 4
+
+# Step 8: Screenshot hotel options
+screenshot hotels.png
+
+# Step 9: Return to Google
+go https://www.google.com/
+wait 2
+
+# Step 10: Search for flights
+type "cheap flights booking" in name "q"
+enter in name "q"
+wait 3
+
+# Step 11: Click on flight booking site
+click css "a[href*='skyscanner.com'], a[href*='kayak.com'], a[href*='expedia.com']"
+wait 4
+
+# Step 12: Screenshot flight options
+screenshot flights.png
+
+# Step 13: Back to Google for reviews
+go https://www.google.com/
+wait 2
+
+# Step 14: Search for travel reviews
+type "travel destination reviews" in name "q"
+enter in name "q"
+wait 3
+
+# Step 15: Final screenshot
+screenshot travel_reviews.png
+close
+
